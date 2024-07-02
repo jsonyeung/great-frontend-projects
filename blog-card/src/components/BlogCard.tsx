@@ -1,18 +1,31 @@
 import { RiArrowRightLine } from "react-icons/ri";
 
-function Badge({ children }) {
+interface BadgeProps {
+  children: React.ReactNode;
+}
+
+function Badge({ children }: BadgeProps) {
   return (
-    <div className="inline-block bg-green-50 text-green-700 border border-green-200 rounded-full text-sm py-0.5 px-2">
+    <span className="inline-block bg-green-50 text-green-700 border border-green-200 rounded-full text-sm py-0.5 px-2">
       {children}
-    </div>
+    </span>
   );
 }
 
-function BlogCard({ coverImage, title, category, link, blurb }) {
+interface BlogCardProps {
+  coverImage: string;
+  title: string;
+  category: string;
+  link: string;
+  blurb: string;
+}
+
+function BlogCard({ coverImage, title, category, link, blurb }: BlogCardProps) {
   return (
-    <div className="w-full max-w-[340px] relative overflow-hidden bg-white shadow-md border border-neutral-200 rounded-lg">
+    <article className="w-full max-w-[340px] relative overflow-hidden bg-white shadow-md border border-neutral-200 rounded-lg">
       <div
         className="w-full h-[288px]"
+        role="image"
         style={{
           backgroundImage: `url(${coverImage})`,
           backgroundRepeat: "no-repeat",
@@ -25,7 +38,7 @@ function BlogCard({ coverImage, title, category, link, blurb }) {
         <div className="flex flex-col items-start gap-2 mb-3">
           <Badge>{category}</Badge>
           <a href={link}>
-            <h1 className="text-lg font-semibold mb-[1px]">{title}</h1>
+            <h2 className="text-lg font-semibold mb-[1px]">{title}</h2>
           </a>
         </div>
 
@@ -42,7 +55,7 @@ function BlogCard({ coverImage, title, category, link, blurb }) {
 
         <a href={link} className="absolute inset-0" aria-label={title}></a>
       </div>
-    </div>
+    </article>
   );
 }
 
