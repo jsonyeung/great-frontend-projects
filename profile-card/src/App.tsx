@@ -1,4 +1,4 @@
-import coverImg from "./assets/blog-post-thumbnail.jpg";
+import profileImg from "./assets/profile.png";
 import ProfileCard from "./components/ProfileCard";
 
 import "@fontsource-variable/noto-sans";
@@ -7,13 +7,13 @@ import "./app.css";
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F9FAFB] to-[#D2D6DB]">
-      <div className="grid justify-items-center pt-[7.5rem] px-4">
+      <div className="grid justify-items-center pt-[12.5rem] px-4">
         <ProfileCard
-          title="Top 5 Living Room Inspirations"
+          title="Sarah Dole"
           link="#"
           category="Interior"
-          coverImage={coverImg}
-          blurb={`Curated vibrants colors for your living, make it pop & calm in the same time.`}
+          profileImage={profileImg}
+          blurb={`I turn coffee into bugs which are fixed by someone else. Certified Stack Overflow and ChatGPT developer.`}
         />
       </div>
     </div>
