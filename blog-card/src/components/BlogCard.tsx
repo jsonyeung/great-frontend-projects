@@ -6,7 +6,7 @@ interface BadgeProps {
 
 function Badge({ children }: BadgeProps) {
   return (
-    <span className="inline-block bg-green-50 text-green-700 border border-green-200 rounded-full text-sm py-0.5 px-2">
+    <span className="inline-block bg-green-50 text-green-700 border border-green-200 rounded-full text-sm py-[1px] px-2">
       {children}
     </span>
   );
@@ -22,7 +22,7 @@ interface BlogCardProps {
 
 function BlogCard({ coverImage, title, category, link, blurb }: BlogCardProps) {
   return (
-    <article className="w-full max-w-[340px] relative overflow-hidden bg-white shadow-md border border-neutral-200 rounded-lg">
+    <article className="w-full max-w-[340px] relative overflow-hidden bg-white shadow-md rounded-lg">
       <div
         className="w-full h-[288px]"
         role="image"
@@ -38,18 +38,18 @@ function BlogCard({ coverImage, title, category, link, blurb }: BlogCardProps) {
         <div className="flex flex-col items-start gap-2 mb-3">
           <Badge>{category}</Badge>
           <a href={link}>
-            <h2 className="text-lg font-semibold mb-[1px]">{title}</h2>
+            <h2 className="text-lg font-semibold text-neutral-900 mb-[1px]">{title}</h2>
           </a>
         </div>
 
         <div className="flex flex-col items-start gap-6">
-          <p className="text-base text-neutral-600 drop-shadow-sm">{blurb}</p>
+          <p className="font-medium text-base text-neutral-600">{blurb}</p>
           <a
             href={link}
-            className="flex items-center gap-1.5 font-medium text-indigo-700"
+            className="flex items-center gap-2.5 font-medium text-indigo-700"
           >
             Read more
-            <RiArrowRightLine />
+            <RiArrowRightLine size={"1.25em"} />
           </a>
         </div>
 
