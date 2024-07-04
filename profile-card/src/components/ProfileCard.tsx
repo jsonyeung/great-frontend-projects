@@ -41,29 +41,33 @@ interface ProfileCardProps {
   contactLink: string;
 }
 
-function ProfileCard({ 
-  profileImage, 
-  name, 
-  jobTitle, 
-  company, 
-  blurb, 
-  contactLink 
+function ProfileCard({
+  profileImage,
+  name,
+  jobTitle,
+  company,
+  blurb,
+  contactLink,
 }: ProfileCardProps): JSX.Element {
   return (
     <article className="w-full max-w-[340px] overflow-hidden bg-white shadow-md rounded-lg px-4 py-6">
       <header className="flex flex-col items-center gap-6 text-center mb-10">
-        <img 
-          className="inline-block size-avatar rounded-full" 
-          src={profileImage} 
-          alt={`profile picture for ${name}`} 
+        <img
+          className="inline-block size-16 rounded-full"
+          width={64}
+          height={64}
+          src={profileImage}
+          alt={`profile picture for ${name}`}
         />
 
         <div>
           <h2 className="text-xl font-medium text-neutral-900 mb-1">{name}</h2>
-          <p className="text-sm">{jobTitle} @ {company}</p>
+          <p className="text-sm">
+            {jobTitle} @ {company}
+          </p>
         </div>
 
-        <p className="font-medium text-base">{blurb}</p>
+        <p className="text-base">{blurb}</p>
       </header>
 
       <footer className="flex flex-col items-center gap-6">
@@ -72,7 +76,7 @@ function ProfileCard({
           className="text-white font-medium bg-indigo-700 w-full text-center rounded p-2.5"
           aria-label={`Contact ${name}`}
         >
-          Contact Me
+          Contact me
         </a>
 
         <SocialMediaLinks />
