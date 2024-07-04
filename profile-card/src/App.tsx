@@ -9,10 +9,11 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-[#F9FAFB] to-[#D2D6DB]">
       <div className="grid justify-items-center pt-[12.5rem] px-4">
         <ProfileCard
-          title="Sarah Dole"
-          link="#"
-          category="Interior"
           profileImage={profileImg}
+          name="Sarah Dole"
+          jobTitle="Front End Engineer"
+          company="Microsoft"
+          contactLink="#"
           blurb={`I turn coffee into bugs which are fixed by someone else. Certified Stack Overflow and ChatGPT developer.`}
         />
       </div>
