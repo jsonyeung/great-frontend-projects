@@ -4,7 +4,7 @@ interface BadgeProps {
 
 function Badge({ children }: BadgeProps) {
   return (
-    <span className="bg-green-50 text-green-700 border border-green-200 rounded-full text-sm py-1 px-2">
+    <span className="bg-yellow-50 text-orange-700 border border-yellow-300 rounded-full text-sm py-1 px-2">
       {children}
     </span>
   );
