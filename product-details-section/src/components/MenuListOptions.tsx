@@ -16,7 +16,7 @@ function MenuListOptions() {
   }
 
   return (
-    <div className="flex flex-wrap gap-4 py-4 md:gap-3.5">
+    <div className="flex flex-wrap gap-4 py-4">
       {options.map((option) => {
         const isSelected = selected != null && option.label === selected.label;
 

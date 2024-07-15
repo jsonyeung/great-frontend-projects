@@ -6,82 +6,77 @@ import CounterInput from "./components/CounterInput";
 import PriceTag from "./components/PriceTag";
 import Accordion from "./components/Accordian";
 import ProductGallery from "./components/ProductGallery";
+import PageContainer from "./components/PageContainer";
 
 import "@fontsource-variable/noto-sans";
 import "./app.css";
 
+import test from "../designs/Empty - Desktop.jpg";
+
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F9FAFB] to-[#D2D6DB] p-4">
-      <div className="m-auto max-w-[1440px] rounded-lg bg-white pt-10 pb-4 shadow-md lg:grid lg:grid-cols-2 lg:p-20">
-        {/* Gallery */}
-        <div className="mx-4 my-2 md:my-4">
-          <ProductGallery />
-        </div>
+    <PageContainer>
+      {/* <img src={test} className='absolute top-0 left-0 opacity-20'/> */}
 
-        {/* Details Section */}
-        <div className="mx-4 my-4">
-          <div className="mb-7">
-            <h1 className="mb-5 text-3xl font-semibold md:text-5xl">
-              Voyager Hoodie
-            </h1>
+      {/* Gallery */}
+      <div className="mx-4 my-2 md:my-4">
+        <ProductGallery />
+      </div>
 
-            <PriceTag value={"$76"} original={"$95"} />
+      {/* Details Section */}
+      <section className="mx-4 my-4">
+        <div className="mb-7">
+          <h1 className="mb-5 text-3xl font-semibold md:text-5xl">
+            Voyager Hoodie
+          </h1>
 
-            <div className="mb-4">
-              <Badge>20% OFF</Badge>
-            </div>
+          <PriceTag value={"$76"} original={"$95"} />
+          <Badge>20% OFF</Badge>
 
-            <div className="flex items-center gap-2.5">
-              <span className="text-xl text-gray-700">4.1</span>
-              <Rating value={4.5} maxStars={5} />
+          <div className="mt-4 flex items-center gap-2.5">
+            <span className="text-xl text-gray-700">4.1</span>
+            <Rating value={4.5} maxStars={5} />
 
-              <a
-                href="#"
-                className="text-sm font-semibold tracking-tight text-indigo-600"
-              >
-                See all 62 reviews
-              </a>
-            </div>
-
-            <p className="mt-7 md:mt-8">
-              The Voyager Hoodie is for the explorer at heart. Its durable
-              fabric and roomy pockets are perfect for those who are always
-              searching for the next adventure.
-            </p>
+            <a
+              href="#"
+              className="text-sm font-semibold tracking-tight text-indigo-600"
+            >
+              See all 62 reviews
+            </a>
           </div>
 
-          {/* Menu List Options */}
-          <form className="pt-2">
-            <label className="text-sm text-neutral-500">Available Colors</label>
-            <ColorListOptions />
-
-            <fieldset>
-              <legend className="pt-4 text-sm text-neutral-500">
-                Available Sizes
-              </legend>
-
-              <MenuListOptions />
-            </fieldset>
-
-            <fieldset className="mt-4">
-              <legend className="mb-4 text-sm text-neutral-500">
-                Quantity
-              </legend>
-
-              <CounterInput />
-            </fieldset>
-
-            <button className="mb-4 mt-8 w-full rounded-md bg-indigo-600 p-3 text-white md:p-4 md:text-lg">
-              Add to Cart
-            </button>
-          </form>
-
-          {/* Accordian */}
-          <Accordion />
+          <p className="mt-7 md:mt-8">
+            The Voyager Hoodie is for the explorer at heart. Its durable fabric
+            and roomy pockets are perfect for those who are always searching for
+            the next .
+          </p>
         </div>
-      </div>
-    </div>
+
+        {/* Add To Cart Form */}
+        <form className="mt-8 mb-3">
+          <label className="block text-sm text-neutral-500">
+            Available Colors
+          </label>
+          <ColorListOptions />
+
+          <label className="block mt-4 text-sm text-neutral-500">
+            Available Sizes
+          </label>
+          <MenuListOptions />
+
+          <label className="block mt-4 mb-5 text-sm text-neutral-500">
+            Quantity
+          </label>
+          <CounterInput />
+
+          <button className="mt-8 w-full rounded-md bg-indigo-600 p-3 text-white md:p-4 md:text-lg">
+            Add to Cart
+          </button>
+        </form>
+
+        <Accordion />
+      </section>
+    </PageContainer>
   );
 }
 

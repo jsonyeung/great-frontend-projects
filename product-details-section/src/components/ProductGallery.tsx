@@ -1,7 +1,7 @@
 function ProductGallery() {
   return (
     <div>
-      <div className="lg:max-h-[800px] md:max-h-[810px] overflow-hidden rounded-lg">
+      <div className="lg:max-h-[800px] md:max-h-[810px] max-h-[400px] overflow-hidden rounded-lg">
         <img
           className="aspect-[2/3]"
           src="https://e-commerce-smoky-ten.vercel.app/_next/image?url=https%3A%2F%2Fvaqybtnqyonvlwtskzmv.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fe-commerce-track-images%2Fvoyager-hoodie%2Fvoyager-hoodie-1.jpg&w=1920&q=75"
