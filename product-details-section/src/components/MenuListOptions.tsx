@@ -1,28 +1,21 @@
-import { useState } from "react";
-
-function MenuListOptions() {
-  const [selected, setSelected] = useState(null);
-
-  const options = [
-    { label: "XS", value: "XS" },
-    { label: "S", value: "S" },
-    { label: "M", value: "M" },
-    { label: "L", value: "L" },
-    { label: "XL", value: "XL" },
-  ];
-
+function MenuListOptions({ options, value, onSelect }) {
   function handleMenuSelect(option) {
-    setSelected(option);
+    if (onSelect) {
+      onSelect(option.value);
+    }
   }
 
   return (
     <div className="flex flex-wrap gap-4 py-4">
       {options.map((option) => {
-        const isSelected = selected != null && option.label === selected.label;
+        const isSelected = value != null && option.value === value;
 
         return (
           <button
-            className={`h-12 w-16 rounded-sm border ${isSelected ? "border-indigo-600" : "border-neutral-200"} bg-transparent font-medium text-black`}
+            key={option.value}
+            className={`h-12 w-16 rounded-sm border ${
+              isSelected ? "border-indigo-600" : "border-neutral-200"
+            } bg-transparent font-medium text-black`}
             onClick={(e) => {
               e.preventDefault();
               handleMenuSelect(option);

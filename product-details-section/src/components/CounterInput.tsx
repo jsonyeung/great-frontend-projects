@@ -3,27 +3,25 @@ import { RiAddFill, RiSubtractFill } from "react-icons/ri";
 
 import Tooltip from "./Tooltip";
 
-function CounterInput() {
-  const [count, setCount] = useState(0);
-
-  const min = 0;
-  const max = 10;
-
-  function handleIncrement(e) {
+function CounterInput({ value, min = 0, max = 10, onChange }) {
+  const handleOnChange = (incValue: number) => (e) => {
     e.preventDefault();
-    setCount(Math.min(Math.max(min, count + 1), max));
-  }
+    let newValue = value + incValue;
 
-  function handleDecrement(e) {
-    e.preventDefault();
-    setCount(Math.min(Math.max(min, count - 1), max));
-  }
+    if (newValue < min || newValue > max) {
+      return;
+    }
+
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
 
   return (
     <div className="inline-flex rounded-md border border-neutral-200 bg-neutral-50">
       <button
-        onClick={handleDecrement}
-        disabled={count <= min}
+        onClick={handleOnChange(-1)}
+        disabled={value <= min}
         className="flex size-8 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
       >
         <RiSubtractFill />
@@ -31,14 +29,15 @@ function CounterInput() {
 
       <input
         type="number"
-        value={count}
+        value={value}
         className="w-[3.6rem] appearance-textfield bg-transparent text-center text-sm font-medium"
         readOnly
       />
-      <Tooltip label="Insufficient stock" disabled={count < max}>
+
+      <Tooltip label="Insufficient stock" hidden={value < max}>
         <button
-          onClick={handleIncrement}
-          disabled={count >= max}
+          onClick={handleOnChange(1)}
+          disabled={value >= max}
           className="flex size-8 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
         >
           <RiAddFill className="-mr-1" />

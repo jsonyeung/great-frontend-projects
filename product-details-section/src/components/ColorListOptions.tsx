@@ -1,22 +1,14 @@
-import { useState } from "react";
 import { RiCheckLine } from "react-icons/ri";
 
-function ColorListOptions({}) {
-  const [selected, setSelected] = useState({ label: "blue", value: "blue" });
-
-  const options = [
-    { label: "blue", value: "blue" },
-    { label: "brown", value: "brown" },
-  ];
-
+function ColorListOptions({ value, options, onSelect }) {
   function handleColorSelect(option) {
-    setSelected(option);
+    if (onSelect) onSelect(option.value);
   }
 
   return (
     <div className="flex gap-8 px-2 py-6">
       {options.map((option) => {
-        const isSelected = option.label === selected.label;
+        const isSelected = option.value === value;
 
         return (
           <div
