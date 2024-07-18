@@ -28,3 +28,19 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Things I Learnt
+
+### Accessibility
+- `aria-describedby` provides the screen reader with additional information about an element
+
+```html
+<span aria-describedby='my-tooltip'>Text</span>
+<div id='my-tooltip' class='tooltip'>
+  This is a tooltip that describes the element above
+</div>
+```
+
+If there are multiple tooltips, we can use React's `useId()` hook to generate custom ids to be used within `aria-described` or `aria-labelledby`
+
+- `React.cloneElement()` is useful when you want to add or modify the props of a parent component’s children while avoiding unnecessary duplicate code.

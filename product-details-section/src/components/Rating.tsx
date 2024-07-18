@@ -2,7 +2,11 @@ import { RiStarFill } from "react-icons/ri";
 
 function Rating({ value, maxStars }) {
   return (
-    <div className="inline-block relative">
+    <div
+      className="inline-block relative"
+      role="img"
+      aria-label={`rating: {value} out of {maxStars} stars`}
+    >
       <div className="flex gap-1">
         {new Array(maxStars).fill(null).map(() => (
           <RiStarFill className="size-5 fill-neutral-200" />

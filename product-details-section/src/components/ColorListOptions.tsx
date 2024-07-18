@@ -6,7 +6,7 @@ function ColorListOptions({ value, options, onSelect }) {
   }
 
   return (
-    <div className="flex gap-8 px-2 py-6">
+    <div role="radiogroup" className="flex gap-8 px-2 py-6">
       {options.map((option) => {
         const isSelected = option.value === value;
 
@@ -20,14 +20,19 @@ function ColorListOptions({ value, options, onSelect }) {
                 handleColorSelect(option);
               }}
               className={`w-full h-full rounded-full`}
+              role="radio"
               aria-labelledby={option.label}
+              aria-checked={isSelected}
               style={{ backgroundColor: option.value }}
             ></button>
 
             {isSelected && (
               <>
                 <div className="absolute inset-0 rounded-full bg-transparent border border-indigo-600" />
-                <RiCheckLine className="absolute inset-center size-7 fill-white" />
+                <RiCheckLine
+                  aria-hidden="true"
+                  className="absolute inset-center size-7 fill-white"
+                />
               </>
             )}
           </div>

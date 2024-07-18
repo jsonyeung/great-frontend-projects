@@ -6,7 +6,7 @@ function MenuListOptions({ options, value, onSelect }) {
   }
 
   return (
-    <div className="flex flex-wrap gap-4 py-4">
+    <div role="radiogroup" className="flex flex-wrap gap-4 py-4">
       {options.map((option) => {
         const isSelected = value != null && option.value === value;
 
@@ -16,6 +16,9 @@ function MenuListOptions({ options, value, onSelect }) {
             className={`h-12 w-16 rounded-sm border ${
               isSelected ? "border-indigo-600" : "border-neutral-200"
             } bg-transparent font-medium text-black`}
+            role="radio"
+            aria-labelledby={option.label}
+            aria-checked={isSelected}
             onClick={(e) => {
               e.preventDefault();
               handleMenuSelect(option);

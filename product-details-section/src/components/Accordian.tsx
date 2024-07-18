@@ -2,40 +2,58 @@ import { useState } from "react";
 import { RiAddCircleLine, RiIndeterminateCircleLine } from "react-icons/ri";
 
 function Accordion({ data }) {
-  const [isOpened, setIsOpened] = useState(new Set());
+  const [openedItems, setOpenedItems] = useState(new Set());
 
-  function handleAccordionItemToggle(itemData) {
-    const results = new Set(isOpened);
-
-    if (!results.has(itemData.id)) {
-      results.add(itemData.id);
-    } else {
-      results.delete(itemData.id);
-    }
-
-    setIsOpened(results);
+  function handleAccordionItemToggle(itemId) {
+    setOpenedItems((prevOpenedItems) => {
+      const newOpenedItems = new Set(prevOpenedItems);
+      if (newOpenedItems.has(itemId)) {
+        newOpenedItems.delete(itemId);
+      } else {
+        newOpenedItems.add(itemId);
+      }
+      return newOpenedItems;
+    });
   }
 
   return (
-    <div>
+    <div className="accordion">
       {data.map((itemData) => {
+        const isExpanded = openedItems.has(itemData.id);
+        const headerId = `accordion-header-${itemData.id}`;
+        const contentId = `accordion-content-${itemData.id}`;
+
         return (
-          <div className="border-b border-neutral-300 last:border-none">
+          <div
+            key={itemData.id}
+            className="accordion-item border-b border-neutral-300 last:border-none"
+          >
+            <h3>
+              <button
+                id={headerId}
+                aria-expanded={isExpanded}
+                aria-controls={contentId}
+                onClick={() => handleAccordionItemToggle(itemData.id)}
+                className="w-full cursor-pointer flex items-center justify-between py-7 text-left"
+              >
+                <span className="text-lg font-medium">{itemData.title}</span>
+                <span className="icon" aria-hidden="true">
+                  {isExpanded ? (
+                    <RiIndeterminateCircleLine size={"1.5rem"} />
+                  ) : (
+                    <RiAddCircleLine size={"1.5rem"} />
+                  )}
+                </span>
+              </button>
+            </h3>
             <div
-              onClick={() => handleAccordionItemToggle(itemData)}
-              className="cursor-pointer flex items-center justify-between py-7"
-            >
-              <h3 className="text-lg font-medium">{itemData.title}</h3>
-
-              {isOpened.has(itemData.id) ? (
-                <RiIndeterminateCircleLine size={"1.5rem"} />
-              ) : (
-                <RiAddCircleLine size={"1.5rem"} />
-              )}
-            </div>
-
-            <div
-              className={`overflow-hidden ${isOpened.has(itemData.id) ? "h-auto -mt-5 mb-7" : "h-0"}`}
+              id={contentId}
+              role="region"
+              aria-labelledby={headerId}
+              className={`overflow-hidden transition-all duration-300 ${
+                isExpanded ? "h-auto -mt-5 mb-7" : "h-0"
+              }`}
+              hidden={!isExpanded}
             >
               {itemData.content}
             </div>
