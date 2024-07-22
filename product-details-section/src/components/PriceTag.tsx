@@ -1,4 +1,11 @@
-function PriceTag({ value, original }) {
+import React from "react";
+
+interface PriceTagProps {
+  value: string;
+  original?: string | null;
+}
+
+const PriceTag: React.FC<PriceTagProps> = ({ value, original }) => {
   return (
     <div className="mb-2 text-3xl font-medium">
       <span aria-label={`current price: ${value}`}>{value}</span>
@@ -13,6 +20,6 @@ function PriceTag({ value, original }) {
       )}
     </div>
   );
-}
+};
 
 export default PriceTag;

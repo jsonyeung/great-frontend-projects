@@ -95,11 +95,15 @@ function App() {
             ]}
           />
 
-          <label className="block mt-4 mb-5 text-sm text-neutral-500">
+          <label
+            htmlFor="quantity"
+            className="block mt-4 mb-5 text-sm text-neutral-500"
+          >
             Quantity
           </label>
 
           <CounterInput
+            id="quantity"
             value={quantity}
             min={1}
             max={10}

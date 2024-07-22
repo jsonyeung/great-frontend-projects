@@ -1,12 +1,31 @@
-function MenuListOptions({ options, value, onSelect }) {
-  function handleMenuSelect(option) {
+import React, { MouseEvent, HTMLAttributes } from "react";
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface MenuListOptionsProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> {
+  options: Option[];
+  value: string | null;
+  onSelect?: (value: string) => void;
+}
+
+const MenuListOptions: React.FC<MenuListOptionsProps> = ({
+  options,
+  value,
+  onSelect,
+  ...props
+}: MenuListOptionsProps) => {
+  function handleMenuSelect(option: Option) {
     if (onSelect) {
       onSelect(option.value);
     }
   }
 
   return (
-    <div role="radiogroup" className="flex flex-wrap gap-4 py-4">
+    <div role="radiogroup" className="flex flex-wrap gap-4 py-4" {...props}>
       {options.map((option) => {
         const isSelected = value != null && option.value === value;
 
@@ -19,7 +38,7 @@ function MenuListOptions({ options, value, onSelect }) {
             role="radio"
             aria-labelledby={option.label}
             aria-checked={isSelected}
-            onClick={(e) => {
+            onClick={(e: MouseEvent<HTMLButtonElement>) => {
               e.preventDefault();
               handleMenuSelect(option);
             }}
@@ -30,6 +49,6 @@ function MenuListOptions({ options, value, onSelect }) {
       })}
     </div>
   );
-}
+};
 
 export default MenuListOptions;

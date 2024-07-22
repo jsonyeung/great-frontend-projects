@@ -1,25 +1,42 @@
+import React, { MouseEvent } from "react";
 import { RiAddFill, RiSubtractFill } from "react-icons/ri";
 
 import Tooltip from "./Tooltip";
 
-function CounterInput({ value, min = 0, max = 10, onChange }) {
-  const handleOnChange = (incValue: number) => (e) => {
-    e.preventDefault();
-    let newValue = value + incValue;
+interface CounterInputProps {
+  value: number;
+  min?: number;
+  max?: number;
+  onChange?: (newValue: number) => void;
+}
 
-    if (newValue < min || newValue > max) {
-      return;
-    }
+const CounterInput: React.FC<CounterInputProps> = ({
+  value,
+  min = 0,
+  max = 10,
+  onChange,
+  ...props
+}) => {
+  const handleOnChange =
+    (incValue: number) => (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
 
-    if (onChange) {
-      onChange(newValue);
-    }
-  };
+      let newValue = value + incValue;
+
+      if (newValue < min || newValue > max) {
+        return;
+      }
+
+      if (onChange) {
+        onChange(newValue);
+      }
+    };
 
   return (
     <div
       role="group"
       className="inline-flex rounded-md border border-neutral-200 bg-neutral-50"
+      {...props}
     >
       <button
         onClick={handleOnChange(-1)}
@@ -55,6 +72,6 @@ function CounterInput({ value, min = 0, max = 10, onChange }) {
       </Tooltip>
     </div>
   );
-}
+};
 
 export default CounterInput;

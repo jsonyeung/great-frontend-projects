@@ -1,7 +1,24 @@
+import React, { HTMLAttributes } from "react";
 import { RiCheckLine } from "react-icons/ri";
 
-function ColorListOptions({ value, options, onSelect }) {
-  function handleColorSelect(option) {
+interface ColorOption {
+  value: string;
+  label: string;
+}
+
+interface ColorListOptionsProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> {
+  options: ColorOption[];
+  value: string | null;
+  onSelect?: (value: string) => void;
+}
+
+const ColorListOptions: React.FC<ColorListOptionsProps> = ({
+  value,
+  options,
+  onSelect,
+}) => {
+  function handleColorSelect(option: ColorOption) {
     if (onSelect) onSelect(option.value);
   }
 
@@ -40,6 +57,6 @@ function ColorListOptions({ value, options, onSelect }) {
       })}
     </div>
   );
-}
+};
 
 export default ColorListOptions;

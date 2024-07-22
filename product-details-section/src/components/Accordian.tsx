@@ -1,10 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { RiAddCircleLine, RiIndeterminateCircleLine } from "react-icons/ri";
 
-function Accordion({ data }) {
-  const [openedItems, setOpenedItems] = useState(new Set());
+interface AccordionItem {
+  id: number | string;
+  title: string;
+  content: React.ReactNode;
+}
 
-  function handleAccordionItemToggle(itemId) {
+interface AccordionProps {
+  data: AccordionItem[];
+}
+
+const Accordion: React.FC<AccordionProps> = ({ data }) => {
+  const [openedItems, setOpenedItems] = useState<Set<AccordionItem["id"]>>(
+    new Set()
+  );
+
+  const handleAccordionItemToggle = (itemId: AccordionItem["id"]): void => {
     setOpenedItems((prevOpenedItems) => {
       const newOpenedItems = new Set(prevOpenedItems);
       if (newOpenedItems.has(itemId)) {
@@ -14,7 +26,7 @@ function Accordion({ data }) {
       }
       return newOpenedItems;
     });
-  }
+  };
 
   return (
     <div className="accordion">
@@ -62,6 +74,6 @@ function Accordion({ data }) {
       })}
     </div>
   );
-}
+};
 
 export default Accordion;

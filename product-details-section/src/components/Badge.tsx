@@ -2,7 +2,7 @@ interface BadgeProps {
   children: React.ReactNode;
 }
 
-function Badge({ children }: BadgeProps) {
+const Badge = ({ children }: BadgeProps) => {
   return (
     <span
       role="status"
@@ -11,6 +11,6 @@ function Badge({ children }: BadgeProps) {
       {children}
     </span>
   );
-}
+};
 
 export default Badge;
