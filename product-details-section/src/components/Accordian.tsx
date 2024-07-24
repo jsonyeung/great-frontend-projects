@@ -49,7 +49,7 @@ const Accordion: React.FC<AccordionProps> = ({ data }) => {
                 className="w-full cursor-pointer flex items-center justify-between py-7 text-left"
               >
                 <span className="text-lg font-medium">{itemData.title}</span>
-                <span className="icon" aria-hidden="true">
+                <span className="text-neutral-400" aria-hidden="true">
                   {isExpanded ? (
                     <RiIndeterminateCircleLine size={"1.5rem"} />
                   ) : (

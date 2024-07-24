@@ -47,7 +47,7 @@ function App() {
           <Badge>20% OFF</Badge>
 
           <div className="mt-4 flex items-center gap-2.5">
-            <span className="text-xl text-gray-700">4.1</span>
+            <span className="text-xl text-neutral-900">4.1</span>
             <Rating value={4.5} maxStars={5} />
 
             <a
@@ -112,7 +112,7 @@ function App() {
 
           <button
             type="submit"
-            className="mt-8 w-full rounded-md bg-indigo-600 p-3 text-white md:p-4 md:text-lg"
+            className="mt-8 w-full rounded-md transition-colors bg-indigo-600 hover:bg-indigo-700 p-3 text-white md:p-4 md:text-lg"
           >
             Add to Cart
           </button>

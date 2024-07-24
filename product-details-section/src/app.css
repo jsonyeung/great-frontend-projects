@@ -11,6 +11,15 @@
   @apply text-neutral-600;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-neutral-900;
+}
+
 /* hide the spinner on native number inputs */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

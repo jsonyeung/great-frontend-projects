@@ -32,9 +32,11 @@ const MenuListOptions: React.FC<MenuListOptionsProps> = ({
         return (
           <button
             key={option.value}
-            className={`h-12 w-16 rounded-sm border ${
-              isSelected ? "border-indigo-600" : "border-neutral-200"
-            } bg-transparent font-medium text-black`}
+            className={`h-12 w-16 rounded-sm border bg-transparent font-medium text-black transition-colors ${
+              isSelected
+                ? "border-indigo-600"
+                : "border-neutral-200 hover:border-indigo-300"
+            }`}
             role="radio"
             aria-labelledby={option.label}
             aria-checked={isSelected}

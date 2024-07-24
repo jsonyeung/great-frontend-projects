@@ -29,13 +29,13 @@ const ColorListOptions: React.FC<ColorListOptionsProps> = ({
 
         return (
           <div
-            className={`relative size-10 cursor-pointer ${isSelected ? "p-1" : "p-0"}`}
+            className={`group relative size-10 cursor-pointer transition-all ${isSelected ? "p-1" : "p-0"}`}
+            onClick={(e) => {
+              e.preventDefault();
+              handleColorSelect(option);
+            }}
           >
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                handleColorSelect(option);
-              }}
               className={`w-full h-full rounded-full`}
               role="radio"
               aria-labelledby={option.label}
@@ -43,15 +43,15 @@ const ColorListOptions: React.FC<ColorListOptionsProps> = ({
               style={{ backgroundColor: option.value }}
             ></button>
 
-            {isSelected && (
-              <>
-                <div className="absolute inset-0 rounded-full bg-transparent border border-indigo-600" />
-                <RiCheckLine
-                  aria-hidden="true"
-                  className="absolute inset-center size-7 fill-white"
-                />
-              </>
-            )}
+            <div
+              role="presentation"
+              className={`absolute inset-0 rounded-full bg-transparent border border-indigo-600  transition-opacity ${isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-80"}`}
+            />
+
+            <RiCheckLine
+              aria-hidden="true"
+              className={`absolute inset-center size-7 fill-white transition-opacity ${isSelected ? "opacity-100" : "opacity-0"}`}
+            />
           </div>
         );
       })}
