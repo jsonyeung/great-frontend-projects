@@ -13,12 +13,13 @@ interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ data }) => {
   const [openedItems, setOpenedItems] = useState<Set<AccordionItem["id"]>>(
-    new Set()
+    new Set(data.map((item) => item.id))
   );
 
   const handleAccordionItemToggle = (itemId: AccordionItem["id"]): void => {
     setOpenedItems((prevOpenedItems) => {
       const newOpenedItems = new Set(prevOpenedItems);
+
       if (newOpenedItems.has(itemId)) {
         newOpenedItems.delete(itemId);
       } else {
