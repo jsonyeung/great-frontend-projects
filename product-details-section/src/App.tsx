@@ -75,7 +75,7 @@ function App() {
 
             <a
               href="#"
-              className="text-sm font-semibold tracking-tight text-indigo-600"
+              className="text-sm font-medium text-indigo-600"
             >
               See all 62 reviews
             </a>
@@ -120,7 +120,7 @@ function App() {
 
           <label
             htmlFor="quantity"
-            className="block mt-4 mb-5 text-sm text-neutral-500"
+            className="block mt-4 mb-4 text-sm text-neutral-500"
           >
             Quantity
           </label>
@@ -135,7 +135,7 @@ function App() {
 
           <button
             type="submit"
-            className="mt-8 w-full rounded-md transition-colors bg-indigo-600 hover:bg-indigo-700 p-3 text-white md:p-4 md:text-lg"
+            className="mt-8 w-full rounded-md transition-colors bg-indigo-700 hover:bg-indigo-800 p-3 text-white md:p-4 md:text-lg"
           >
             Add to Cart
           </button>
@@ -152,7 +152,7 @@ function App() {
                   <li>
                     Soft, breathable fabric ideal for travel and adventure.
                   </li>
-                  <li>Lace front procket and adjustable hood.</li>
+                  <li>Large front pocket and adjustable hood.</li>
                   <li>Minimalist design pairs well with any style.</li>
                   <li>Made with eco-conscious materials.</li>
                 </ul>
@@ -165,10 +165,10 @@ function App() {
                 <ul className="list-inside list-disc text-gray-600">
                   <li>Machine wash cold on a gentle cycle.</li>
                   <li>
-                    Tumble dry on low heat with tennis balls to maintain loft.
+                    Tumble dry low heat or hang to dry.
                   </li>
-                  <li>Do not iron; steam if necessary.</li>
-                  <li>Can be dry cleaned if preferred</li>
+                  <li>Do not use frabric softeners or bleach.</li>
+                  <li>Iron on a low setting if necessary.</li>
                 </ul>
               ),
             },
