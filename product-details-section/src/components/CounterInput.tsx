@@ -21,7 +21,7 @@ const CounterInput: React.FC<CounterInputProps> = ({
     (incValue: number) => (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
 
-      let newValue = value + incValue;
+      const newValue = value + incValue;
 
       if (newValue < min || newValue > max) {
         return;
