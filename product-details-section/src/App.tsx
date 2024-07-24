@@ -33,7 +33,30 @@ function App() {
     <PageContainer>
       {/* Gallery */}
       <div className="mx-4 my-2 md:my-4">
-        <ProductGallery />
+        <ProductGallery
+          images={[
+            {
+              id: 1,
+              imageUrl:
+                "https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/voyager-hoodie/voyager-hoodie-1.jpg",
+            },
+            {
+              id: 2,
+              imageUrl:
+                "https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/voyager-hoodie/voyager-hoodie-2.jpg",
+            },
+            {
+              id: 3,
+              imageUrl:
+                "https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/voyager-hoodie/voyager-hoodie-3.jpg",
+            },
+            {
+              id: 4,
+              imageUrl:
+                "https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/voyager-hoodie/voyager-hoodie-4.jpg",
+            },
+          ]}
+        />
       </div>
 
       {/* Details Section */}

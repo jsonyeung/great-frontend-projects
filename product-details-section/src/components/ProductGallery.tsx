@@ -1,39 +1,110 @@
-function ProductGallery() {
+import { motion, useMotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+function Carousel({ images, selected, onSelect }) {
+  const carouselRef = useRef(null);
+  const imageContainerRef = useRef(null);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [imageContainerWidth, setImageContainerWidth] = useState(0);
+  const [carouselWidth, setCarouselWidth] = useState(0);
+
+  const mouseX = useMotionValue(0);
+
+  useEffect(() => {
+    function calculateCarouselWidth() {
+      if (!carouselRef.current) return;
+      setCarouselWidth(carouselRef.current.clientWidth);
+    }
+
+    function calculateImageContainerWidth() {
+      if (!imageContainerRef.current) return;
+      const nodes = imageContainerRef.current.childNodes;
+
+      setImageContainerWidth(
+        Array.from(nodes).reduce((acc, node) => {
+          return acc + node.clientWidth;
+        }, 0)
+      );
+    }
+
+    calculateCarouselWidth();
+    calculateImageContainerWidth();
+
+    window.addEventListener("resize", calculateCarouselWidth);
+    window.addEventListener("resize", calculateImageContainerWidth);
+
+    return () => {
+      window.removeEventListener("resize", calculateCarouselWidth);
+      window.removeEventListener("resize", calculateImageContainerWidth);
+    };
+  }, [imageContainerWidth, carouselWidth]);
+
+  const maxBounds = -(imageContainerWidth - carouselWidth);
+
+  return (
+    <div
+      role="listbox"
+      ref={carouselRef}
+      className="relative overflow-hidden mb-12 mt-6"
+    >
+      <motion.div
+        ref={imageContainerRef}
+        className="flex cursor-grab active:cursor-grabbing"
+        drag="x"
+        dragConstraints={{
+          left: maxBounds,
+          right: 0,
+        }}
+        style={{ x: mouseX }}
+        dragElastic={0.2}
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
+      >
+        {images.map((image) => (
+          <button
+            role="option"
+            key={image.id}
+            className="relative shrink-0 h-[120px] w-[96px] md:h-[185px] md:w-[205px] lg:h-[190px] lg:w-[175px] pr-4"
+            onClick={() => !isDragging && onSelect(image)}
+          >
+            <div className="w-full h-full overflow-hidden rounded-lg">
+              <img
+                className="pointer-events-none"
+                src={image.imageUrl}
+                alt={`Product image ${image.id}`}
+              />
+
+              <div
+                role="presentation"
+                className={`absolute inset-0 right-4 transition-all ${selected.id === image.id ? "border-4" : "border-0"} border-indigo-500 rounded-lg`}
+              />
+            </div>
+          </button>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function ProductGallery({ images }) {
+  const [selectedImage, setSelectedImage] = useState(images[0] || {});
+
   return (
     <div>
-      <div className="lg:max-h-[800px] md:max-h-[810px] max-h-[400px] overflow-hidden rounded-lg">
+      <div className="overflow-hidden rounded-lg max-h-[400px] lg:max-h-[800px] md:max-h-[810px]">
         <img
           className="aspect-[2/3]"
-          src="https://e-commerce-smoky-ten.vercel.app/_next/image?url=https%3A%2F%2Fvaqybtnqyonvlwtskzmv.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fe-commerce-track-images%2Fvoyager-hoodie%2Fvoyager-hoodie-1.jpg&w=1920&q=75"
+          src={selectedImage.imageUrl}
+          alt="Main product image"
         />
       </div>
 
-      <div className="mb-12 mt-6 flex gap-4 overflow-hidden">
-        <div className="h-[120px] w-[80px] shrink-0 md:h-[185px] md:w-[185px] lg:h-[190px] lg:w-[160px]">
-          <img
-            className="h-full w-full rounded-lg"
-            src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/autumnal-knitwear/autumnal-knitwear-1.jpg"
-          />
-        </div>
-        <div className="h-[120px] w-[80px] shrink-0 md:h-[185px] md:w-[185px] lg:h-[190px] lg:w-[160px]">
-          <img
-            className="h-full w-full rounded-lg"
-            src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/autumnal-knitwear/autumnal-knitwear-1.jpg"
-          />
-        </div>
-        <div className="h-[120px] w-[80px] shrink-0 md:h-[185px] md:w-[185px] lg:h-[190px] lg:w-[160px]">
-          <img
-            className="h-full w-full rounded-lg"
-            src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/autumnal-knitwear/autumnal-knitwear-1.jpg"
-          />
-        </div>
-        <div className="h-[120px] w-[80px] shrink-0 md:h-[185px] md:w-[185px] lg:h-[190px] lg:w-[160px]">
-          <img
-            className="h-full w-full rounded-lg"
-            src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/autumnal-knitwear/autumnal-knitwear-1.jpg"
-          />
-        </div>
-      </div>
+      <Carousel
+        images={images}
+        selected={selectedImage}
+        onSelect={setSelectedImage}
+      />
     </div>
   );
 }
