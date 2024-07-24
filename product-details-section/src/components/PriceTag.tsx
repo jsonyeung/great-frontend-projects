@@ -8,15 +8,17 @@ interface PriceTagProps {
 const PriceTag: React.FC<PriceTagProps> = ({ value, original }) => {
   return (
     <div className="mb-2 text-3xl font-medium">
-      <span aria-label={`current price: ${value}`}>{value}</span>
+      <p aria-label={`current price: ${value}`} className="inline-block">
+        {value}
+      </p>
 
       {original != null && (
-        <span
+        <p
           aria-label={`original price: ${original}`}
-          className="ml-2 text-lg text-neutral-400 line-through"
+          className="inline-block ml-2 text-lg text-neutral-400 line-through"
         >
           {original}
-        </span>
+        </p>
       )}
     </div>
   );

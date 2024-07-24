@@ -61,7 +61,7 @@ function App() {
           <p className="mt-7 md:mt-8">
             The Voyager Hoodie is for the explorer at heart. Its durable fabric
             and roomy pockets are perfect for those who are always searching for
-            the next .
+            the next adventure.
           </p>
         </div>
 
@@ -161,7 +161,7 @@ function App() {
                   <li>Expedited shipping available at an additional cost.</li>
                   <li>
                     Packaged in biodegradable materials to reduce environmental
-                    impact
+                    impact.
                   </li>
                 </ul>
               ),
