@@ -1,15 +1,26 @@
 import { motion, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-function Carousel({ images, selected, onSelect }) {
-  const carouselRef = useRef(null);
-  const imageContainerRef = useRef(null);
+interface Image {
+  id: string;
+  imageUrl: string;
+}
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [imageContainerWidth, setImageContainerWidth] = useState(0);
-  const [carouselWidth, setCarouselWidth] = useState(0);
+interface CarouselProps {
+  images: Image[];
+  selected: Image;
+  onSelect: (image: Image) => void;
+}
 
-  const mouseX = useMotionValue(0);
+function Carousel({ images, selected, onSelect }: CarouselProps) {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [imageContainerWidth, setImageContainerWidth] = useState<number>(0);
+  const [carouselWidth, setCarouselWidth] = useState<number>(0);
+
+  const mouseX = useMotionValue<number>(0);
 
   useEffect(() => {
     function calculateCarouselWidth() {
@@ -23,7 +34,7 @@ function Carousel({ images, selected, onSelect }) {
 
       setImageContainerWidth(
         Array.from(nodes).reduce((acc, node) => {
-          return acc + node.clientWidth;
+          return acc + (node as HTMLElement).clientWidth;
         }, 0)
       );
     }
@@ -87,8 +98,14 @@ function Carousel({ images, selected, onSelect }) {
   );
 }
 
-function ProductGallery({ images }) {
-  const [selectedImage, setSelectedImage] = useState(images[0] || {});
+interface ProductGalleryProps {
+  images: Image[];
+}
+
+function ProductGallery({ images }: ProductGalleryProps) {
+  const [selectedImage, setSelectedImage] = useState<Image>(
+    images[0] || ({} as Image)
+  );
 
   return (
     <div>

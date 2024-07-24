@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import Badge from "./components/Badge";
 import Rating from "./components/Rating";
@@ -18,7 +18,7 @@ function App() {
   const [color, setColor] = useState("#10b982");
   const [size, setSize] = useState("xs");
 
-  function handleAddToCart(e) {
+  function handleAddToCart(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     alert(
       JSON.stringify({
